@@ -35,7 +35,6 @@ export enum Category {
 	TICKETS = "Tickets",
 	TICKETING = "Ticketing",
 	AMENITIES = "Amenities",
-	RESERVE = "Reserve",
 	FRONT_DESK = "Front Desk",
 	PARKING = "Parking",
 	GIFT_CARD = "Gift Card",

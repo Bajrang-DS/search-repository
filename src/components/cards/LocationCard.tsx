@@ -59,6 +59,7 @@ export interface LocationData {
   name?: string,
   hours?: Hours,
   photoGallery?: any,
+  yextDisplayCoordinate?: any
   
 }
 
@@ -210,7 +211,7 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
           <a
             target={"_blank"}
             className="flex flex-col items-center text-sm text-orange"
-            href={getGoogleMapsLink(location.yextDisplayCoordinate)}
+             href={getGoogleMapsLink(location.yextDisplayCoordinate)}
             rel="noreferrer"
           >
             <RiDirectionFill size={24} />

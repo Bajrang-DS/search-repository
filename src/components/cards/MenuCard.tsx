@@ -113,50 +113,19 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
 
     const isVertical = useAnswersState((s) => s.meta.searchType) === 'vertical';
 
-
-    const [data, setData] = React.useState([]);
-    React.useEffect(() => {
-        fetch(
-            "https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=d5fa714f14d1b9bd3f4b1c3713f63df5&v=20230123&entityTypes=ce_menuItem"
-        )
-            .then((res) => res.json())
-            .then((json) => {
-                setData(json.response.entities);
-            });
-    }, []);
-
-    {data.map((res: any) => 
-        {
-return (
-            <div className="centered-container" >
-    <img src={res.c_image.url} alt=" none" />
-    </div>
-    );
-}
-)}
-
     return (
 
 
         <>
-
-                        
-
-            <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
                 <PageLayout >
 
 
                     <section  >
                         <div className=" border-2 border-indigo-600 pt-4 pb-4 pl-4 pr-4 text-center ">
         
-            
-            
-
                             <div className='text-blue-600'>
                                 {renderName(trainer.name)}
                             </div>
-
-
 
                             <div className="centered-container" style={{ color: "green" }}>{renderCategory(trainer.c_itemCategory)}
                             </div>
@@ -176,7 +145,7 @@ return (
 
 
 
-                </PageLayout></div>
+                </PageLayout>
         </>
     )
 
