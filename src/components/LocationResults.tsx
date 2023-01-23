@@ -73,6 +73,7 @@ export default function LocationResults(props: LocationResultsProps): JSX.Elemen
               { label: 'Plans', verticalKey: 'cf-plans' },
               { label: 'Switch', verticalKey: 'switch' },
               { label: 'Videos', verticalKey: 'videos' },
+              { label: 'Menu Items', verticalKey: 'menu_items' },
             ]}
             cssCompositionMethod="assign"
             customCssClasses={{

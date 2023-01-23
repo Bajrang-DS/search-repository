@@ -100,13 +100,13 @@ export function FaqCard(props: TrainerCardProps): JSX.Element {
     <AccordionItem  key={trainer.id}>
         <AccordionItemHeading>
             <AccordionItemButton>
-            <div className='text-red-600'>{renderName(trainer.name)}</div>
+            <div className='text-blue-600'>{renderName(trainer.name)}</div>
             </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel>
         <div>
           {renderName(trainer.answer)}
-          <div className={cssClasses.ctaButtonText}>Read more</div>
+          <div className={cssClasses.ctaButtonText}><span style={{color:"green"}}>Read more</span></div>
           </div>
         </AccordionItemPanel>
     </AccordionItem>

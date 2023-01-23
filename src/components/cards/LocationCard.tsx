@@ -3,6 +3,9 @@ import { CardProps } from '../../models/cardComponent';
 import { JSXElementConstructor, ReactElement, ReactNodeArray, ReactPortal, useContext } from 'react';
 import { LocationContext } from '../LocationContext';
 import { LocationActionTypes } from '../locationReducers';
+import { RiDirectionFill } from "react-icons/ri";
+import { Coordinate } from '../../types/locations';
+
 
 
 //prettier-ignore
@@ -82,6 +85,9 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
   const screenSize = 'sm';
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { state, dispatch } = useContext(LocationContext);
+  const getGoogleMapsLink = (coordinate: Coordinate): string => {
+    return `https://www.google.com/maps/dir/?api=1&destination=${coordinate.latitude},${coordinate.longitude}`;
+  };
 
 
 
@@ -189,16 +195,32 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
       </div>
 
 
-      {renderHours(location.hours)}
+      {/* {renderHours(location.hours)} */}
 
 <div className="flex flex-row  items-center lp-param-results lp-subparam-phoneNumber map-add">
 <div className="mr-2 mt-1"><img className=" " src="https://static.vecteezy.com/system/resources/thumbnails/003/720/476/small/phone-icon-telephone-icon-symbol-for-app-and-messenger-vector.jpg" width="28" height="28" alt="" />
 </div>
 <div className="phone "><a id="address" className="" href={`tel:${location.mainPhone}`}>{location.mainPhone}</a>
 </div></div>
-      <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">Check Availability</a>
-      <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">View Packages</a>
+      {/* <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">Check Availability</a>
+      <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">View Packages</a> */}
       <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">More Info</a>
+      <div className="flex items-center">
+       
+          <a
+            target={"_blank"}
+            className="flex flex-col items-center text-sm text-orange"
+            href={getGoogleMapsLink(location.yextDisplayCoordinate)}
+            rel="noreferrer"
+          >
+            <RiDirectionFill size={24} />
+            <p>Directions</p>
+          </a>
+       
+        
+     
+         
+      </div>
       {screenSize !== 'sm' && (
         <div className={cssClasses.ctaButton}>
           <div className="sm:text-body align-middle font-heading text-3xl font-bold sm:text-base">JOIN US</div>

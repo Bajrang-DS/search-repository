@@ -4,25 +4,28 @@ import AppliedFilters from '../components/AppliedFilters';
 import DirectAnswer from '../components/DirectAnswer';
 import VerticalResults from '../components/VerticalResults';
 import SpellCheck from '../components/SpellCheck';
-import LocationBias from '../components/LocationBias';
+// import LocationBias from '../components/LocationBias';
 import usePageSetupEffect from '../hooks/usePageSetupEffect';
-import { FaqCard } from '../components/cards/FaqCard';
+//import { FaqCard } from '../components/cards/FaqCard';
 import Footer from '../components/Footer';
+import { MenuCard } from '../components/cards/MenuCard';
 
-export default function FAQsPage({ verticalKey }: {
-  verticalKey: string
+export default function MenuPage({ verticalKey }: {
+  verticalKey: string 
 }) {
   usePageSetupEffect(verticalKey);
 
   return (
-    <><div>
+    <>
+   
+    <div  >
       <DirectAnswer />
       <SpellCheck />
       <ResultsCount />
       <AppliedFilters
         hiddenFields={['builtin.entityType']} />
       <AlternativeVerticals
-        currentVerticalLabel='FAQs'
+        currentVerticalLabel='Menu Items'
         verticalsConfig={[
           { label: 'Locations', verticalKey: 'locations' },
           { label: 'Switch', verticalKey: 'switch' },
@@ -31,10 +34,17 @@ export default function FAQsPage({ verticalKey }: {
          
 
         ]} />
+        
       <VerticalResults
-        CardComponent={FaqCard} />
-      <LocationBias />
-      <Footer />
-    </div></>
+        CardComponent={MenuCard} />
+      {/* <LocationBias /> */}
+      
+    </div>
+    
+    <Footer />
+    </>
+
+    
   )
+  
 }
