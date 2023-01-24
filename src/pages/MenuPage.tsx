@@ -19,7 +19,7 @@ export default function MenuPage({ verticalKey }: {
     <>
    
     <div  >
-      <DirectAnswer />
+      {/* <DirectAnswer />
       <SpellCheck />
       <ResultsCount />
       <AppliedFilters
@@ -33,14 +33,14 @@ export default function MenuPage({ verticalKey }: {
           { label: 'Faqs', verticalKey: 'faqs' }
          
 
-        ]} />
-        
+        ]} /> */}
+     
       <VerticalResults
         CardComponent={MenuCard} />
       {/* <LocationBias /> */}
       
-    </div>
     
+    </div>  
     <Footer />
     </>
 

@@ -6,7 +6,7 @@ import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { CardProps } from '../../models/cardComponent';
 import PageLayout from "./page-layout";
 import * as React from "react";
-// import renderCardImg from '../../utils/renderCardImg';
+//import renderCardImg from '../../utils/renderCardImg';
 // import {
 //     Accordion,
 //     AccordionItem,
@@ -15,7 +15,7 @@ import * as React from "react";
 //     AccordionItemPanel,
 // } from 'react-accessible-accordion';
 
-//prettier-ignore
+// prettier-ignore
 export interface TrainerCardConfig {
     showOrdinal?: boolean
 }
@@ -52,7 +52,8 @@ export interface TrainerData {
     primaryPhoto?: PrimaryPhoto,
     c_itemCategory?: string,
     c_image?: any,
-    richTextDescription?: string
+    richTextDescription?: string,
+    photoGallery?: any
 }
 
 //prettier-ignore
@@ -66,7 +67,8 @@ export interface TrainerCardCssClasses {
     ctaButtonText?: string,
     c_itemCategory?: string,
     c_image?: any,
-    richTextDescription?: string
+    richTextDescription?: string,
+    photoGallery?: any
 }
 
 //prettier-ignore
@@ -111,18 +113,47 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
         return <div className={cssClasses.descriptionContainer}>{quote}</div>;
     }
 
+
     const isVertical = useAnswersState((s) => s.meta.searchType) === 'vertical';
+//     console.log('trainer', trainer);
+//     const [data, setData] = React.useState([]);
+//   React.useEffect(() => {
+//     fetch(
+//         "https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=d5fa714f14d1b9bd3f4b1c3713f63df5&v=20230124&entityTypes=ce_menuItem"
+//     )
+//       .then((res) => res.json())
+//       .then((json) => {
+//         setData(json.response.entities);
+//       });
+//   }, []);
 
     return (
-
-
         <>
-                <PageLayout >
 
 
+           
+                
+                <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
                     <section  >
-                        <div className=" border-2 border-indigo-600 pt-4 pb-4 pl-4 pr-4 text-center ">
-        
+                    <div className=" border-2 border-indigo-600 pt-4 pb-4 pl-4 pr-4 text-center ">
+                        <div>
+                        
+                            {trainer.photoGallery.map((res: any) => {
+                                return (
+                                    <div className="centered-container" >
+                                        
+                                        <img src={res.image?.url} alt=" none" />
+                                    </div>
+
+                                )
+                            })
+                            }
+                        </div>
+
+
+
+                       
+
                             <div className='text-blue-600'>
                                 {renderName(trainer.name)}
                             </div>
@@ -132,21 +163,21 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
                             <div className="centered-container">{renderDescription(trainer.richTextDescription)}
                             </div>
                             <div> <button type="button" className="w-48 my-8 rounded-xl bg-amber-400 border-8 shadow-xl border-amber-500 px-2 py-2  centered-container">
-                        <b>
-                          <a className="btn btn-primary " style={{ color: "green" }} href="#" >
-                           Order-Now
-                          </a>
-                        </b>
-                      </button>
-                      </div>
+                                <b>
+                                    <a className="btn btn-primary " style={{ color: "green" }} href="#" >
+                                        Order-Now
+                                    </a>
+                                </b>
+                            </button>
+                            </div>
                         </div>
+                        
 
-                    </section>
-
-
-
-                </PageLayout>
+                    </section></div>
+                    
+                
         </>
     )
+
 
 }
