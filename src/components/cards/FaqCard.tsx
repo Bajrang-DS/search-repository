@@ -96,6 +96,8 @@ export function FaqCard(props: TrainerCardProps): JSX.Element {
 
 
 <Accordion allowZeroExpanded>
+<div style={{padding:"15px"}} className="grid grid-cols-1 gap-x-10 gap-y-10">
+<div className=" border-2 border-indigo-600 pt-4 pb-4 pl-4 pr-4  ">
 
     <AccordionItem  key={trainer.id}>
         <AccordionItemHeading>
@@ -106,11 +108,12 @@ export function FaqCard(props: TrainerCardProps): JSX.Element {
         <AccordionItemPanel>
         <div>
           {renderName(trainer.answer)}
-          <div className={cssClasses.ctaButtonText}><span style={{color:"green"}}>Read more</span></div>
+          <div className={cssClasses.ctaButtonText}></div>
           </div>
         </AccordionItemPanel>
     </AccordionItem>
-
+    </div>
+    </div>
 </Accordion>
   );
 }

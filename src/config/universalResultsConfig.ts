@@ -43,6 +43,7 @@ export const universalResultsConfig: UniversalResultsConfig = {
   // }, 
   menu_items: {
     label: 'Menu Items',
+    viewMapButton: true,
     viewAllButton: true,
     cardConfig: {
       CardComponent: MenuCard,
@@ -52,6 +53,7 @@ export const universalResultsConfig: UniversalResultsConfig = {
     faqs: {
     label: 'FAQs',
     viewAllButton: true,
+    viewMapButton: true,
     cardConfig: {
       CardComponent: FaqCard,
       showOrdinal: false

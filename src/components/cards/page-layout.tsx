@@ -11,7 +11,7 @@ type Props = {
 
 const PageLayout = ({  children }: Props) => {
   return (
-    <div>
+    <div >
      
       {children}
       

@@ -38,7 +38,7 @@ export default function App() {
   return (
     <AnswersHeadlessProvider {...answersHeadlessConfig}>
       <div className="flex justify-center px-2 py-6 text-black sm:px-8">
-        <div className="w-full">
+        <div className="w-full pl-0 pr-0">
           <ResponsiveContext.Provider value={screenSize}>
             <PageRouter Layout={StandardLayout} routes={routeConfig} />
           </ResponsiveContext.Provider>

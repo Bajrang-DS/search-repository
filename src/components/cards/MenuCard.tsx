@@ -1,10 +1,10 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { useContext } from 'react';
-import { Url } from 'url';
+import { Fragment, useContext } from 'react';
+// import { Url } from 'url';
 import { ResponsiveContext } from '../../App';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { CardProps } from '../../models/cardComponent';
-import PageLayout from "./page-layout";
+// import PageLayout from "./page-layout";
 import * as React from "react";
 //import renderCardImg from '../../utils/renderCardImg';
 // import {
@@ -53,7 +53,8 @@ export interface TrainerData {
     c_itemCategory?: string,
     c_image?: any,
     richTextDescription?: string,
-    photoGallery?: any
+    photoGallery?: any,
+    description?: string
 }
 
 //prettier-ignore
@@ -68,7 +69,8 @@ export interface TrainerCardCssClasses {
     c_itemCategory?: string,
     c_image?: any,
     richTextDescription?: string,
-    photoGallery?: any
+    photoGallery?: any,
+    description?: string
 }
 
 //prettier-ignore
@@ -104,78 +106,73 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
     function renderDescription(richTextDescription?: string) {
         return <div className={cssClasses.richTextDescription}>{richTextDescription}</div>;
     }
-
-    function renderImage(c_image?: Url) {
-        return <div>{c_image}</div>;
+    function renderAbout(description?: string) {
+        return <div className={cssClasses.description}>{description}</div>;
     }
 
-    function renderQuote(quote?: string) {
-        return <div className={cssClasses.descriptionContainer}>{quote}</div>;
-    }
+    // function renderImage(c_image?: Url) {
+    //     return <div>{c_image}</div>;
+    // }
+
+    // function renderQuote(quote?: string) {
+    //     return <div className={cssClasses.descriptionContainer}>{quote}</div>;
+    // }
 
 
     const isVertical = useAnswersState((s) => s.meta.searchType) === 'vertical';
-//     console.log('trainer', trainer);
-//     const [data, setData] = React.useState([]);
-//   React.useEffect(() => {
-//     fetch(
-//         "https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=d5fa714f14d1b9bd3f4b1c3713f63df5&v=20230124&entityTypes=ce_menuItem"
-//     )
-//       .then((res) => res.json())
-//       .then((json) => {
-//         setData(json.response.entities);
-//       });
-//   }, []);
+   return  (
 
-    return (
         <>
+        
+            <section >
+            <div className="flex flex-wrap gap-y-2">
+                <div style={{ padding: "10px" }} className="grid grid-cols-1 gap-x-10 gap-y-10">
 
 
-           
-                
-                <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
-                    <section  >
-                    <div className=" border-2 border-indigo-600 pt-4 pb-4 pl-4 pr-4 text-center ">
-                        <div>
-                        
-                            {trainer.photoGallery.map((res: any) => {
-                                return (
-                                    <div className="centered-container" >
-                                        
-                                        <img src={res.image?.url} alt=" none" />
-                                    </div>
-
-                                )
-                            })
-                            }
-                        </div>
-
-
-
-                       
-
+                    <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
+                        <div className=" border-2 border-indigo-600 pt-2 pb-2 pl-2 pr-2 text-center">
                             <div className='text-blue-600'>
                                 {renderName(trainer.name)}
-                            </div>
 
-                            <div className="centered-container" style={{ color: "green" }}>{renderCategory(trainer.c_itemCategory)}
-                            </div>
-                            <div className="centered-container">{renderDescription(trainer.richTextDescription)}
-                            </div>
-                            <div> <button type="button" className="w-48 my-8 rounded-xl bg-amber-400 border-8 shadow-xl border-amber-500 px-2 py-2  centered-container">
-                                <b>
-                                    <a className="btn btn-primary " style={{ color: "green" }} href="#" >
-                                        Order-Now
-                                    </a>
-                                </b>
-                            </button>
+                                <div className="centered-container" >
+
+                                    {trainer.photoGallery.map((res: any) => {
+                                        return (
+                                            <div className="centered-container" >
+
+                                                <img   src={res.image?.url} alt=" none" />
+                                            </div>
+
+                                        )
+                                    })
+                                    }
+
+                                    <div className="centered-container" style={{ color: "green" }}>{renderCategory(trainer.c_itemCategory)}
+
+                                        <div style={{ color: "black" }} className="centered-container">{renderDescription(trainer.richTextDescription)}
+
+                                            <div className="centered-container">{renderAbout(trainer.description)}
+
+                                               <button style={{ backgroundColor: "yellow" }} type="button" className="w-48 my-4 rounded-xl bg-amber-400 border-4 shadow-xl border-amber-500 px-2 py-2 border-pink-500  centered-container">
+                                                    <b>
+                                                        <a className="btn btn-primary " style={{ color: "green" }} href="#" >
+                                                            Order-Now
+                                                        </a>
+                                                    </b>
+                                                </button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
+                    </div>
+                </div>
+                </div>
 
-                    </section></div>
-                    
-                
+            </section>
+           
         </>
     )
 
