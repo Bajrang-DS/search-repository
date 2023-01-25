@@ -1,19 +1,19 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { Fragment, useContext } from 'react';
-// import { Url } from 'url';
+import { useContext } from 'react';
 import { ResponsiveContext } from '../../App';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { CardProps } from '../../models/cardComponent';
+// import renderCardImg from '../../utils/renderCardImg';
 // import PageLayout from "./page-layout";
 import * as React from "react";
-//import renderCardImg from '../../utils/renderCardImg';
-// import {
-//     Accordion,
-//     AccordionItem,
-//     AccordionItemHeading,
-//     AccordionItemButton,
-//     AccordionItemPanel,
-// } from 'react-accessible-accordion';
+// import renderCardImg from '../../utils/renderCardImg';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
 
 // prettier-ignore
 export interface TrainerCardConfig {
@@ -39,9 +39,9 @@ export interface Image extends SimpleImage {
 }
 
 //prettier-ignore
-interface PrimaryPhoto {
-    c_image?: Image
-}
+// interface PrimaryPhoto {
+//     c_image?: Image
+// }
 
 //prettier-ignore
 export interface TrainerData {
@@ -49,7 +49,7 @@ export interface TrainerData {
     answer: string | undefined;
     name?: string,
     c_inspirationalQuote?: string,
-    primaryPhoto?: PrimaryPhoto,
+    //primaryPhoto?: PrimaryPhoto,
     c_itemCategory?: string,
     c_image?: any,
     richTextDescription?: string,
@@ -90,7 +90,7 @@ const builtInCssClasses: TrainerCardCssClasses = {
 export function MenuCard(props: TrainerCardProps): JSX.Element {
     const { result } = props;
     const trainer = result.rawData as unknown as TrainerData;
-    const trainerImg = trainer.primaryPhoto?.c_image?.url ?? '';
+    //const trainerImg = trainer.primaryPhoto?.c_image?.url ?? '';
     // const smallestThumbnail = trainer.logo?.image?.thumbnails[trainer.logo?.image?.thumbnails.length - 1].url
 
     const screenSize = useContext(ResponsiveContext);
@@ -109,7 +109,14 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
     function renderAbout(description?: string) {
         return <div className={cssClasses.description}>{description}</div>;
     }
-
+    const imge = trainer?.photoGallery?.map((img: any) => {
+        // console.log (img);
+        return (
+            <>
+                <img src={img?.image?.sourceUrl} />
+            </>
+        );
+    });
     // function renderImage(c_image?: Url) {
     //     return <div>{c_image}</div>;
     // }
@@ -120,18 +127,18 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
 
 
     const isVertical = useAnswersState((s) => s.meta.searchType) === 'vertical';
-   return  (
+    return (
 
         <>
-        
+
             <section >
-            <div className="flex flex-wrap gap-y-2">
-                <div style={{ padding: "10px" }} className="grid grid-cols-1 gap-x-10 gap-y-10">
+                <div className="flex flex-wrap gap-y-2">
+                    <div style={{ padding: "10px" }} className="grid grid-cols-1 gap-x-10 gap-y-10">
 
 
-                    <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
-                        <div className=" border-2 border-indigo-600 pt-2 pb-2 pl-2 pr-2 text-center">
-                            <div className='text-blue-600'>
+                        <div className="grid grid-cols-3 gap-x-10 gap-y-10 pl-4 pr-4">
+                            <div className=" border-2 border-indigo-600 pt-2 pb-2 pl-2 pr-2 text-center">
+                                {/* <div className='text-blue-600'>
                                 {renderName(trainer.name)}
 
                                 <div className="centered-container" >
@@ -145,23 +152,25 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
 
                                         )
                                     })
-                                    }
+                                    } */}
+                                <div className="bg-gray-100 p-2" style={{ width: "100%" }}>
+                                    <p> {imge}</p>
+                                    
 
-                                    <div className="centered-container" style={{ color: "green" }}>{renderCategory(trainer.c_itemCategory)}
+                                <div className="centered-container" style={{ color: "green" }}>{renderCategory(trainer.c_itemCategory)}
 
-                                        <div style={{ color: "black" }} className="centered-container">{renderDescription(trainer.richTextDescription)}
+                                    <div style={{ color: "black" }} className="centered-container">{renderDescription(trainer.richTextDescription)}
 
-                                            <div className="centered-container">{renderAbout(trainer.description)}
+                                        <div className="centered-container">{renderAbout(trainer.description)}
 
-                                               <button style={{ backgroundColor: "yellow" }} type="button" className="w-48 my-4 rounded-xl bg-amber-400 border-4 shadow-xl border-amber-500 px-2 py-2 border-pink-500  centered-container">
-                                                    <b>
-                                                        <a className="btn btn-primary " style={{ color: "green" }} href="#" >
-                                                            Order-Now
-                                                        </a>
-                                                    </b>
-                                                </button>
-                                                
-                                            </div>
+                                            <button style={{ backgroundColor: "yellow" }} type="button" className="w-48 my-4 rounded-xl bg-amber-400 border-4 shadow-xl border-amber-500 px-2 py-2 border-pink-500  centered-container">
+                                                <b>
+                                                    <a className="btn btn-primary " style={{ color: "green" }} href="#" >
+                                                        Order-Now
+                                                    </a>
+                                                </b>
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -169,9 +178,10 @@ export function MenuCard(props: TrainerCardProps): JSX.Element {
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
+       
 
-            </section>
+            </section >
            
         </>
     )
