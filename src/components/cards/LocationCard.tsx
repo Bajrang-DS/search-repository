@@ -204,7 +204,7 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
 <div className="phone "><a id="address" className="" href={`tel:${location.mainPhone}`}>{location.mainPhone}</a>
 </div></div>
 
-      {/* <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">View Packages</a> */} */}
+      {/* <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">View Packages</a> */} 
       <a className={cssClasses.ctaButton} href="https://communityfibre.co.uk/">More Info</a>
       <div className="flex items-center">
        
